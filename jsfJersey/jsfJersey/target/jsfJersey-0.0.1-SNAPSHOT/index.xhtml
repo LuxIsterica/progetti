@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+                <title>PrimeFaces - DataTable e WS Jersey</title>
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <link type="text/css" rel="stylesheet" href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-glass-x" />
+<style>
+	.ui-widget-content, .ui-messages-info-detail{
+		font-size: 9px !important;
+	}
+	.ui-column-title{
+		font-size: 9px !important;
+		text-align: left;
+		font-weight: bold;
+	}	
+	.ui-button-text{
+		font-size: 9px !important;
+	}
+</style>
+</h:head>
+
+<h:body>
+<H1>Lista persone</H1>
+<p:dataTable var="persona" value="#{dtBasicView.pers}">
+    <p:column headerText="Id">
+        <h:outputText value="#{persona.id}" />
+    </p:column>
+ 
+    <p:column headerText="Nome">
+        <h:outputText value="#{persona.nome}" />
+    </p:column>
+ 
+    <p:column headerText="Cognome">
+        <h:outputText value="#{persona.cognome}" />
+    </p:column>
+    
+    <p:column headerText="Età">
+        <h:outputText value="#{persona.eta}" />
+    </p:column>
+ 
+    <p:column headerText="Telefono">
+        <h:outputText value="#{persona.telefono}" />
+    </p:column>    
+  
+    <p:column headerText="Email">
+        <h:outputText value="#{persona.email}" />
+    </p:column>    
+
+</p:dataTable>
+<h:form id="form">
+ 
+ <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+ <p:commandButton value="Calcola l'età media" actionListener="#{dtBasicView.info}" />    
+ <p:commandButton id="submitButton" value="Inserisci nuovo record" action="#{dtBasicView.processAction}"/>
+ 
+</h:form>
+
+</h:body>
+
+</html>

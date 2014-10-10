@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+                <title>PrimeFaces - DataTable e WS Jersey</title>
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <link type="text/css" rel="stylesheet" href="/project/faces/javax.faces.resource/theme.css?ln=primefaces-glass-x" />
+<style>
+	.ui-outputlabel, .ui-inputfield, .ui-button-text {
+		font-size: 9px !important;
+	}
+</style>
+</h:head>
+
+<h:body>
+<H1>Inserimento nuova persona</H1>
+<h:form>
+    <h:panelGrid columns="2" cellpadding="5">
+        <p:outputLabel for="id" value="Id: " />
+        <p:inputMask id="id" value="#{dtMaskView.id}" mask="999" size="3" style="width:50px;"/>
+ 
+        <p:outputLabel for="nome" value="Nome:" />
+        <p:inputText id="nome" size="20" value="#{dtMaskView.nome}" style="width:200px;" />
+ 
+        <p:outputLabel for="cognome" value="Cognome:" />
+        <p:inputText id="cognome" value="#{dtMaskView.cognome}" maxlength="20" style="width:200px;"/>
+ 
+        <p:outputLabel for="eta" value="Eta:" />
+        <p:inputMask id="eta" value="#{dtMaskView.eta}" mask="99" size="2" style="width:50px;"/>
+ 
+        <p:outputLabel for="telefono" value="Telefono:" />
+        <p:inputText id="telefono" value="#{dtMaskView.telefono}" maxlength="10" style="width:200px;"/>
+ 
+        <p:outputLabel for="email"  value="Email: " />
+        <p:inputText id="email" value="#{dtMaskView.email}" maxlength="20" style="width:200px;"/>
+ 
+        <p:commandButton id="submitButton" value="Inserisci" action="#{dtMaskView.processAction}"/>
+
+ 
+    </h:panelGrid>
+
+</h:form>
+</h:body>
+
+</html>
