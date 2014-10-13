@@ -16,19 +16,19 @@ import it.test.entity.*;
  * @author Mauro Cognolato
  */
 @Transactional
-public class PersonDaoImpl {
+public class UtenteDaoImpl {
 
 	@PersistenceContext
 	private EntityManager em;
 	
 	
-	public int save(Person person) {
-		em.persist(person);
-		return person.getId();
+	public int save(Utente utente) {
+		em.persist(utente);
+		return utente.getUserId();
 	}
 	
-	public List<Person>getAll() {
-		return em.createQuery("SELECT p FROM Person p", Person.class).getResultList();
+	public List<Utente>getAll() {
+		return em.createQuery("SELECT p FROM Utente p", Utente.class).getResultList();
 	}
 	
 }

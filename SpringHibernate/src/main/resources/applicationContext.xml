@@ -12,7 +12,7 @@
 	<tx:annotation-driven />
 	<context:annotation-config />
 
-	<bean id="personDao" class="it.test.dao.PersonDaoImpl" />
+	<bean id="utenteDao" class="it.test.dao.UtenteDaoImpl" />
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -24,7 +24,7 @@
             <value>jdbc:derby://localhost:1527/derby/derbyDB</value>
         </property>
         <property name="username">
-            <value>test</value>
+            <value>tst</value>
         </property>
         <property name="password">
             <value>test</value>
