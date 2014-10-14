@@ -30,5 +30,12 @@ public class UtenteDaoImpl {
 	public List<Utente>getAll() {
 		return em.createQuery("SELECT p FROM Utente p", Utente.class).getResultList();
 	}
+
+	public int savedetute(Utente ute, Dettaglioutente dettUte) {	
+    ute.setDettaglioutente(dettUte);
+    dettUte.setUtente(ute);
+    em.persist(ute);
+    return ute.getuserId();
+	}
 	
 }

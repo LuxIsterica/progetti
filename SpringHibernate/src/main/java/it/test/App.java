@@ -1,5 +1,6 @@
 package it.test;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -9,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import it.test.dao.UtenteDaoImpl;
 import it.test.entity.Utente;
+import it.test.entity.Dettaglioutente;
 
 /**
  * Metodo per testare la app
@@ -22,15 +24,21 @@ public class App {
     			  ClassPathXmlApplicationContext("applicationContext.xml");
     	UtenteDaoImpl dao = (UtenteDaoImpl) context.getBean("utenteDao");
     	
-        Utente name1 = new Utente("aaaa", "bbbb", "utente");
-        Utente name2 = new Utente("cccc", "dddd", "amministratore");
+     //   Utente name1 = new Utente("aaaa", "bbbb", "utente");
+    //    Utente name2 = new Utente("cccc", "dddd", "amministratore");
+        Dettaglioutente dettUte = new Dettaglioutente( new Date(821212), "via Roma 11", "Milano", "0612345678");
+        Utente ute = new Utente("Mario", "Rossi", "Amministratore");
+        int indice = dao.savedetute(ute, dettUte);
         
-        dao.save(name1);
-        dao.save(name2);
+        dettUte = new Dettaglioutente( new Date(741212), "via Milano 101", "Roma", "0212345678");
+        ute = new Utente("Giuseppe", "Verdi", "Utente");
+        
+        indice = dao.savedetute(ute, dettUte);
+
         
         List<Utente> utenti = dao.getAll();
         for (Utente utente : utenti) {
-			System.out.println(utente);
+			System.out.println("L utente " + utente.getCognome() + " vive a " + utente.getDettaglioutente().getCitta());
 		}
         context.close();
     }
