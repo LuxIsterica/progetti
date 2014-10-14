@@ -1,8 +1,5 @@
 package it.test;
 
-import jar.Applicazione;
-import jar.HibernateUtil;
-
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -23,7 +20,7 @@ public class App {
     public static void main(String[] args) {
     	ClassPathXmlApplicationContext context = new  
     			  ClassPathXmlApplicationContext("applicationContext.xml");
-    	UtenteDaoImpl dao = (UtenteDaoImpl) context.getBean("personDao");
+    	UtenteDaoImpl dao = (UtenteDaoImpl) context.getBean("utenteDao");
     	
         Utente name1 = new Utente("aaaa", "bbbb", "utente");
         Utente name2 = new Utente("cccc", "dddd", "amministratore");
