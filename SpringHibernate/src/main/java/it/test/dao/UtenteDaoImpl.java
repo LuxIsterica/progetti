@@ -24,7 +24,7 @@ public class UtenteDaoImpl {
 	
 	public int save(Utente utente) {
 		em.persist(utente);
-		return utente.getUserId();
+		return utente.getuserId();
 	}
 	
 	public List<Utente>getAll() {
