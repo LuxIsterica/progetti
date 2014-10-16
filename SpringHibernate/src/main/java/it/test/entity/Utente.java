@@ -36,6 +36,9 @@ public class Utente {
 
 	@Column(name="ruolo")
 	private String ruolo;
+	
+	@Column(name="ufficioId")
+	private int ufficioid;	
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "utente")
 	@JoinColumn(name="userid")
@@ -56,14 +59,18 @@ public class Utente {
 	                inverseJoinColumns={@JoinColumn(name="appid")})
 	  private Set<Applicazione> applicazioni = new HashSet<Applicazione>();  
 
+		public Utente(String nome, String cognome, String ruolo) {
+			this.nome = nome;
+			this.cognome = cognome;
+			this.ruolo = ruolo;
+		}	  
 
-
-	public Utente(String nome, String cognome, String ruolo) {
-		this.nome = nome;
-		this.cognome = cognome;
-		this.ruolo = ruolo;
-
-	}
+		public Utente(String nome, String cognome, String ruolo, int ufficioid) {
+			this.nome = nome;
+			this.cognome = cognome;
+			this.ruolo = ruolo;
+			this.ufficioid = ufficioid;
+		}
 
 	// 	Metodi Getter e Setter
 
@@ -98,6 +105,14 @@ public class Utente {
 	public void setRuolo(String ruolo) {
 		this.ruolo = ruolo;
 	}
+
+	public int getUfficioid() {
+		return ufficioid;
+	}
+
+	public void setUfficioid(int ufficioid) {
+		this.ufficioid = ufficioid;
+	} 
 
 	public Dettaglioutente getDettaglioutente() {
 		return dettaglioutente;

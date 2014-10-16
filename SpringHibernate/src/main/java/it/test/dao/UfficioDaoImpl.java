@@ -30,6 +30,11 @@ public class UfficioDaoImpl {
 	public void deleteUfficio(Integer id) {
 		em.remove(getUfficio(id));
 	}
+	
+	public void updUffUte(Ufficio uff, Utente ute) {
+      uff.getUtenti().add(ute);
+      em.merge(uff); 
+	}
 
 	public Ufficio getUfficio(Integer id) {
 		return em.find(Ufficio.class, id);

@@ -9,38 +9,52 @@ import org.hibernate.SessionFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import it.test.dao.UtenteDaoImpl;
+import it.test.dao.UfficioDaoImpl;
 import it.test.entity.Utente;
 import it.test.entity.Dettaglioutente;
+import it.test.entity.Ufficio;
 
 /**
- * Metodo per testare la app
+ * Metodo per testare l'app.
  * 
- * @author Mauro Cognolato
+ * @auth
+ * or Mauro Cognolato
  */
 public class App {
+	
+	
 	
     public static void main(String[] args) {
     	ClassPathXmlApplicationContext context = new  
     			  ClassPathXmlApplicationContext("applicationContext.xml");
-    	UtenteDaoImpl dao = (UtenteDaoImpl) context.getBean("utenteDao");
     	
-     //   Utente name1 = new Utente("aaaa", "bbbb", "utente");
-    //    Utente name2 = new Utente("cccc", "dddd", "amministratore");
-        Dettaglioutente dettUte = new Dettaglioutente( new Date(821212), "via Roma 11", "Milano", "0612345678");
-        Utente ute = new Utente("Mario", "Rossi", "Amministratore");
-        int indice = dao.savedetute(ute, dettUte);
-        
-        dettUte = new Dettaglioutente( new Date(741212), "via Milano 101", "Roma", "0212345678");
-        ute = new Utente("Giuseppe", "Verdi", "Utente");
-        
-        indice = dao.savedetute(ute, dettUte);
+    	// Istanzio le classi DAO
+    	UtenteDaoImpl daoUte = (UtenteDaoImpl) context.getBean("utenteDao");
+    	UfficioDaoImpl daoUff = (UfficioDaoImpl) context.getBean("ufficioDao");
+   	
+    	// Definisco un oggetto Ufficio e gli assegno il valore 
+    	Ufficio uff = new Ufficio();
+        uff.setNomeUfficio("Vendite"); 
+        daoUff.save(uff);
+        int idUff = uff.getUfficioId();
 
+        // Istanzio nuovi oggetti Utente e DettaglioUtente
+        Dettaglioutente dettUte = new Dettaglioutente(new Date(821212), "via Roma 11", "Milano", "0612345678");
+        Utente ute = new Utente("Mario", "Rossi", "Amministratore", idUff);
         
-        List<Utente> utenti = dao.getAll();
+        // Salvo gli oggetti
+        daoUte.saveDetUte(ute, dettUte);
+   
+        // Creo un collegamento tra il nuovo utente e l'ufficio
+        daoUff.updUffUte(uff, ute);
+        
+        // Estraggo gli utenti in tabella
+        List<Utente> utenti = daoUte.getAll();
         for (Utente utente : utenti) {
-			System.out.println("L utente " + utente.getCognome() + " vive a " + utente.getDettaglioutente().getCitta());
-		}
-        context.close();
+        	// Estratto la deescrizione dell'ufficio
+        	uff = daoUff.getUfficio(utente.getUfficioid());
+			System.out.println("L utente " + utente.getCognome() + " vive a " + utente.getDettaglioutente().getCitta() + "e appartiene all'ufficio" + uff.getNomeUfficio());
+		} 
     }
 /*    
 	SessionFactory sf = HibernateUtil.getSessionFactory();
