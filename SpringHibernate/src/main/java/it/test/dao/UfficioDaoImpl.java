@@ -34,6 +34,11 @@ public class UfficioDaoImpl {
 	public Ufficio getUfficio(Integer id) {
 		return em.find(Ufficio.class, id);
 	}
+	
+	public void aggUffUte(Utente ute, Ufficio uff) {
+        uff.getUtenti().add(ute);
+        em.merge(uff);
+	}
 
 	public List<Ufficio>getAll() {
 		return em.createQuery("SELECT p FROM Ufficio p", Ufficio.class).getResultList();

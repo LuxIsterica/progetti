@@ -27,15 +27,30 @@ public class UtenteDaoImpl {
 		return utente.getuserId();
 	}
 	
+	public void deleteUtente(Integer id) {
+		em.remove(getUtente(id));
+	}
+	
+	public Utente getUtente(Integer id) {
+		return em.find(Utente.class, id);
+	}	
+	
+	public void aggUteApp(Utente ute, Applicazione app) {
+        
+        em.merge(ute);
+	}
+	
 	public List<Utente>getAll() {
 		return em.createQuery("SELECT p FROM Utente p", Utente.class).getResultList();
 	}
 
-	public int savedetute(Utente ute, Dettaglioutente dettUte) {	
+	public void saveDetUte(Utente ute, Dettaglioutente dettUte) {	
     ute.setDettaglioutente(dettUte);
     dettUte.setUtente(ute);
     em.persist(ute);
-    return ute.getuserId();
+	em.flush();
+	// riallinea l'entità ai valori del DB
+	em.refresh(ute);
 	}
 	
 }

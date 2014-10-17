@@ -66,6 +66,14 @@ public class Utente {
 	}
 
 	// 	Metodi Getter e Setter
+	
+	public Set<Applicazione> getApplicazioni() {
+	      return applicazioni;
+	}
+
+	public void setApplicazioni(Set<Applicazione> applicazioni) {
+	      this.applicazioni = applicazioni;
+	}   
 
 	public int getuserId() {
 		return userId;
