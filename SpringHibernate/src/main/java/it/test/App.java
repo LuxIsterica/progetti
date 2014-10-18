@@ -65,7 +65,6 @@ public class App {
         String nomeUff = uff.getNomeUfficio();
         for (Utente utente : utenti) {
 			System.out.println("L utente " + utente.getCognome() + " vive a " + utente.getDettaglioutente().getCitta() + " e lavora nell'ufficio " + nomeUff);
-		//	Set<Applicazione> apps = utente.getApplicazioni();
 	        for (Applicazione appx : utente.getApplicazioni()) {
 	        	System.out.println("Abilitato all'applicazione: " + appx.getNomeapp() + " - " + appx.getDescrizioneapp());
 	        }
