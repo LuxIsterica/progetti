@@ -35,8 +35,7 @@ public class UtenteDaoImpl {
 		return em.find(Utente.class, id);
 	}	
 	
-	public void aggUteApp(Utente ute, Applicazione app) {
-        
+	public void aggUte(Utente ute) {
         em.merge(ute);
 	}
 	

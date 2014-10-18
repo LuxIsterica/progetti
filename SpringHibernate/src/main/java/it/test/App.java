@@ -44,22 +44,22 @@ public class App {
         Utente ute = new Utente("Mario", "Rossi", "Amministratore");
         daoUte.saveDetUte(ute, dettUte);
         
+        // Creo gli oggetti Applicazione
         Applicazione app1 = new Applicazione("SAP", "Sistema gestionale");
         daoApp.save(app1);
-        int idApp1 = app1.getAppid();
         Applicazione app2 = new Applicazione("GIS", "Sistemi territoriali");
         daoApp.save(app2);
-        int idApp2 = app2.getAppid();
-
 
         // Creo un collegamento tra il nuovo utente e l'ufficio
         daoUff.aggUffUte(ute, uff);
-       // uff.getUtenti().remove(utente);
         
-     // Creo un collegamento tra il nuovo utente e la applicazioni collegate
-        daoUte.aggUteApp(ute, app1);
-        daoUte.aggUteApp(ute, app2);
+        // Creo un collegamento tra il nuovo utente e la applicazioni create
+        ute.getApplicazioni().add(app1);
+        ute.getApplicazioni().add(app2);
         
+        // Aggiorno l'utente
+        daoUte.aggUte(ute);
+
         // Recupero e stampo a video gli oggetti
         List<Utente> utenti = daoUte.getAll();
         String nomeUff = uff.getNomeUfficio();
@@ -67,12 +67,13 @@ public class App {
 			System.out.println("L utente " + utente.getCognome() + " vive a " + utente.getDettaglioutente().getCitta() + " e lavora nell'ufficio " + nomeUff);
 		//	Set<Applicazione> apps = utente.getApplicazioni();
 	        for (Applicazione appx : utente.getApplicazioni()) {
-	        	System.out.println("Abilitato all'applicazione: " + appx.getNomeapp());
+	        	System.out.println("Abilitato all'applicazione: " + appx.getNomeapp() + " - " + appx.getDescrizioneapp());
 	        }
 		}
         
+        // Pulisco il Database
         // Eliminando l'oggetto uff elimino anche tutti i dettagli associati
-        daoUff.deleteUfficio(idUff); 
+        daoUff.deleteUfficio(idUff);
         // Elimino le applicazioni
         daoApp.deleteApplicazioni();
         

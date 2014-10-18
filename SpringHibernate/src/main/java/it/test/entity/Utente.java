@@ -50,7 +50,7 @@ public class Utente {
 	  public Utente() {  
 	  }
 
-	  @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	  @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	  @JoinTable(name="utente_applicazione", 
 	                joinColumns={@JoinColumn(name="userid")}, 
 	                inverseJoinColumns={@JoinColumn(name="appid")})
