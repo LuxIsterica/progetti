@@ -47,7 +47,7 @@ public class App {
         // Creo gli oggetti Applicazione
         Applicazione app1 = new Applicazione("SAP", "Sistema gestionale");
         daoApp.save(app1);
-        Applicazione app2 = new Applicazione("GIS", "Sistemi territoriali");
+        Applicazione app2 = new Applicazione("GIS", "Sistema territoriale");
         daoApp.save(app2);
 
         // Creo un collegamento tra il nuovo utente e l'ufficio
@@ -64,7 +64,7 @@ public class App {
         List<Utente> utenti = daoUte.getAll();
         String nomeUff = uff.getNomeUfficio();
         for (Utente utente : utenti) {
-			System.out.println("L utente " + utente.getCognome() + " vive a " + utente.getDettaglioutente().getCitta() + " e lavora nell'ufficio " + nomeUff);
+			System.out.println("L utente " + utente.getCognome() + " " + utente.getNome() + " vive a " + utente.getDettaglioutente().getCitta() + " e lavora nell'ufficio " + nomeUff);
 	        for (Applicazione appx : utente.getApplicazioni()) {
 	        	System.out.println("Abilitato all'applicazione: " + appx.getNomeapp() + " - " + appx.getDescrizioneapp());
 	        }
