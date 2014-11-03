@@ -9,15 +9,13 @@
 	</h:head>
 	<h:body>
 	<h:form>
-		<!-- p:growl id="messages"></p:growl -->
-		<h:panelGrid columns="2">
-		        <p:outputLabel for="nome" value="Nome:" />
-        <p:inputText id="nome" size="20" value="#{dtMaskView.nome}" />	
+	<p:growl id="messages" showDetail="true" sticky="true" />  
+		<h:panelGrid columns="2">	
 			<p:outputLabel value="Nome:"/>
 			<p:inputText value="#{registerEmployee.employee.employeeName}"/>
 			<p:outputLabel value="Stipendio:" />
-			<p:inputText value="#{registerEmployee.employee.employeeSalary}" />						
-		<p:commandButton value="Registra" action="#{registerEmployee.register}" /> <!--  update="messages" -->
+			<p:inputText value="#{registerEmployee.employee.employeeSalary}" />
+			<p:commandButton value="Registra" action="#{registerEmployee.register}" update="messages" />						
 		</h:panelGrid>
 	</h:form>
 	</h:body>

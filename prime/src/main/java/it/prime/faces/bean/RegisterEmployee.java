@@ -8,13 +8,14 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import it.jpa.data.Employee;
 import it.spring.service.EmployeeService;
 
-@ManagedBean
-@SessionScoped
+@ManagedBean(name="registerEmployee")
+@ViewScoped
 public class RegisterEmployee {
 
 	@ManagedProperty("#{employeeService}")
@@ -39,14 +40,13 @@ public class RegisterEmployee {
 	}
 
 	public String register() {
-		// Calling Business Service
+		// Chiamo la Business Service
 		Date date = new Date();
 		employee.setEmployeeHireDate(date);
-		System.out.println("xxxx" + employee.getEmployeeName() + employee.getEmployeeSalary() + employee.getEmployeeHireDate());
 		employeeService.register(employee);
-		// Add message
-		FacesContext.getCurrentInstance().addMessage(null, 
-				new FacesMessage("The Employee "+this.employee.getEmployeeName()+" Is Registered Successfully"));
-		return "";
+		// Aggiornamento del messaggio non funziona su browser Eclipse.
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("The Employee  Is Registered Successfully"));
+		return "index";
 	}
 }
